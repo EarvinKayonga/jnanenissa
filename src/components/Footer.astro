@@ -1,7 +1,7 @@
 ---
 import { nav, site } from '../data/site';
 ---
-<footer class="zellige">
+<footer>
   <div class="wrap grid cols-3">
     <div>
       <p class="brand">{site.name}</p>
@@ -9,11 +9,11 @@ import { nav, site } from '../data/site';
       <p>{site.tagline}.</p>
     </div>
     <div>
-      <h3>Explorer</h3>
+      <h4>Explorer</h4>
       <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
     </div>
     <div>
-      <h3>Nous joindre</h3>
+      <h4>Nous joindre</h4>
       <ul>
         <li>{site.city}</li>
         <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
@@ -26,13 +26,14 @@ import { nav, site } from '../data/site';
   <p class="copy">© {new Date().getFullYear()} Jnane nissa · Sur réservation uniquement</p>
 </footer>
 <style>
-  footer { color: var(--cream); padding: 4rem 0 1.5rem; }
-  h3 { color: var(--cream); font-size: 1.4rem; }
-  .brand { font-family: var(--serif); font-size: 2.2rem; margin: 0; }
-  .ar { font-size: 1.4rem; margin: 0 0 1rem; text-align: left; }
+  footer { background: var(--green); color: var(--cream); padding: 4.5rem 0 1.5rem; font-size: .95rem; font-weight: 300; }
+  h4 { font-family: var(--sans); font-weight: 500; font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--rose); margin: 0 0 1.2rem; }
+  .brand { font-family: var(--serif); font-size: 2.4rem; line-height: 1; margin: 0 0 .3rem; font-weight: 500; }
+  .ar { text-align: left; font-family: 'Amiri', var(--serif); font-size: 1.5rem; margin: 0 0 1rem; color: var(--rose); }
+  p { max-width: 24em; opacity: .85; }
   ul { list-style: none; padding: 0; margin: 0; }
-  li { margin-bottom: .4rem; }
-  a { text-decoration: none; opacity: .9; }
-  a:hover { text-decoration: underline; }
-  .copy { text-align: center; margin: 3rem 0 0; font-size: .8rem; opacity: .7; }
+  li { margin-bottom: .6rem; }
+  a { text-decoration: none; opacity: .85; transition: .2s; }
+  a:hover { opacity: 1; color: var(--rose); }
+  .copy { text-align: center; max-width: none; margin: 3.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(250,247,241,.2); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .65; }
 </style>
