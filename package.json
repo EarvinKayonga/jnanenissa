@@ -1,0 +1,19 @@
+{
+  "name": "jnanenissa",
+  "type": "module",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.4.8",
+    "astro": "^7.4.12"
+  },
+  "devDependencies": {
+    "wrangler": "^4.162.0"
+  }
+}

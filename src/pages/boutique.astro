@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { produits, bientot } from '../data/produits';
+import { site } from '../data/site';
+---
+<Base title="Boutique terroir & artisanat" description="Produits du terroir et artisanat marocain signés par des femmes.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Boutique terroir & artisanat</span>
+      <h1>Rapporter un peu du champ des femmes</h1>
+      <p class="lead">Une sélection de produits évoqués dans l'exposition, en formats faciles à transporter et conformes à la réglementation aéroportuaire (30, 50 et 100 ml).</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap grid cols-3">
+      {produits.map((p) => (
+        <article>
+          <Image src={p.image} alt={p.name} widths={[300, 500, 700]} sizes="(min-width: 800px) 360px, 90vw" class="thumb" />
+          <span class="eyebrow">{p.origin}</span>
+          <h3>{p.name}</h3>
+          <p>Par {p.by.charAt(0).toLowerCase() + p.by.slice(1)}.</p>
+          <a class="btn ghost" href={`https://wa.me/${site.whatsapp.replace('+', '')}?text=${encodeURIComponent('Bonjour, je souhaite commander : ' + p.name)}`}>Commander</a>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap prose">
+      <h2>Bientôt en boutique</h2>
+      <ul>{bientot.map((b) => <li>{b}</li>)}</ul>
+      <p>Les produits sont disponibles à la galerie et par commande. Contactez-nous pour connaître les disponibilités.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thumb { width: 100%; aspect-ratio: 4/5; object-fit: cover; margin-bottom: 1rem; border-radius: var(--radius); }
+</style>

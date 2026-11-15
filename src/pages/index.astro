@@ -1,0 +1,107 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import { ateliers } from '../data/ateliers';
+import olives from '../assets/photos/olives-femme.jpg';
+import { produits } from '../data/produits';
+
+const expo = (await getCollection('expo')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+---
+<Base>
+  <section class="hero zellige">
+    <div class="wrap grid cols-2">
+      <div>
+        <span class="eyebrow">Galerie culturelle · Tanger</span>
+        <h1>{site.slogan}</h1>
+        <p class="lead">{site.tagline}.</p>
+        <p><a class="btn" href="/exposition">Découvrir l'exposition</a> <a class="btn ghost" href="/ateliers">Réserver un atelier</a></p>
+      </div>
+      <Image src={olives} alt="Femme présentant un plateau d’olives fraîchement cueillies" widths={[400, 700]} sizes="(min-width: 800px) 480px, 90vw" class="hero-img" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid cols-2">
+      <div>
+        <span class="eyebrow">La galerie</span>
+        <h2>Le travail précieux des femmes qui font vivre notre terroir</h2>
+      </div>
+      <div>
+        <p>Jnane nissa est une galerie culturelle interactive à Tanger, créée par une franco-marocaine titulaire d'un doctorat. Elle est dédiée à la découverte du travail des femmes qui valorise notre terroir et notre artisanat.</p>
+        <p>Une exposition permanente, un espace d'écoute et d'enregistrement pour le podcast Jnane nissa, un coin lecture, des ateliers et une boutique forment un seul univers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <span class="eyebrow">Quatre façons de vivre la galerie</span>
+      <div class="grid cols-4 pillars">
+        <a href="/exposition"><h3>Explorez</h3><p>Des panneaux pour voyager à travers les territoires marocains et découvrir le rôle des femmes dans l'agriculture.</p></a>
+        <a href="/exposition"><h3>Expérimentez</h3><p>Des outils agricoles du quotidien pour comprendre les gestes transmis au fil des générations.</p></a>
+        <a href="/ateliers"><h3>Savourez</h3><p>Des ateliers pour fabriquer, déguster et repartir avec un petit cadeau.</p></a>
+        <a href="/boutique"><h3>Rapportez</h3><p>Une sélection de produits du terroir et d'artisanat des femmes de plusieurs régions.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Exposition interactive</span>
+      <h2>Des objets, des gestes, des territoires</h2>
+      <div class="grid cols-3">
+        {expo.map((e) => (
+          <a class="card" href={`/exposition/${e.id}`}>
+            {e.data.image && <Image src={e.data.image} alt="" widths={[300, 500]} sizes="360px" class="thumb wide" />}
+            <span class="eyebrow">{e.data.kind}</span>
+            <h3>{e.data.title}</h3>
+            <p>{e.data.summary}</p>
+          </a>
+        ))}
+      </div>
+      <p><a class="btn ghost" href="/exposition">Toute l'exposition</a></p>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <span class="eyebrow">Ateliers découvertes</span>
+      <h2>Une matinée ou un après-midi pour voyager</h2>
+      <p class="lead">Argan, safran, rose, néroli, cactus, dattes, olives, amandes… {ateliers.length} ateliers, 500 dh par personne, exposition comprise.</p>
+      <p><a class="btn" href="/ateliers">Voir les ateliers</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Boutique terroir & artisanat</span>
+      <h2>Des produits signés par des femmes</h2>
+      <div class="grid cols-3">
+        {produits.map((p) => (
+          <a class="card" href="/boutique">
+            <Image src={p.image} alt={p.name} widths={[300, 500]} sizes="(min-width: 800px) 360px, 90vw" class="thumb" />
+            <h3>{p.name}</h3>
+            <p>{p.by}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 5rem 0; color: var(--cream); }
+  .hero h1, .hero .eyebrow { color: var(--cream); }
+  .hero .eyebrow { color: #f0a63a; }
+  .hero .btn { background: var(--cream); color: var(--green); border-color: var(--cream); }
+  .hero .btn.ghost { background: transparent; color: var(--cream); }
+  .hero-img { width: 100%; max-height: 640px; object-fit: cover; border-radius: 200px 200px 4px 4px; }
+  .pillars a { text-decoration: none; border-top: 2px solid var(--rose); padding-top: 1rem; }
+  .card { text-decoration: none; display: block; }
+  .card:hover h3 { color: var(--rose-deep); }
+  .wide { aspect-ratio: 3/2; }
+  .thumb { width: 100%; aspect-ratio: 4/5; object-fit: cover; margin-bottom: 1rem; border-radius: var(--radius); }
+  @media (max-width: 700px) { .hero { padding: 3rem 0; } .hero-img { max-height: 380px; } }
+</style>

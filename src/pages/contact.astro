@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Réserver" description="Réservez une visite ou un atelier à la galerie Jnane nissa, Tanger.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Sur réservation uniquement</span>
+      <h1>On vous attend !</h1>
+      <p class="lead">Visite de l'exposition, atelier ou commande : écrivez-nous ou appelez {site.founder}.</p>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap grid cols-3">
+      <div><h3>Téléphone</h3><p><a href={`tel:${site.phoneHref}`}>{site.phone}</a></p></div>
+      <div><h3>WhatsApp</h3><p><a href={`https://wa.me/${site.whatsapp.replace('+', '')}`}>{site.whatsapp}</a></p></div>
+      <div><h3>Email</h3><p><a href={`mailto:${site.email}`}>{site.email}</a></p></div>
+    </div>
+  </section>
+</Base>

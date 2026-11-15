@@ -1,0 +1,38 @@
+---
+import { nav, site } from '../data/site';
+const path = Astro.url.pathname;
+const active = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+---
+<div class="bar">Sur réservation uniquement · {site.city}</div>
+<header>
+  <div class="wrap row">
+    <a href="/" class="logo"><span>{site.name}</span><small>{site.slogan}</small></a>
+    <input type="checkbox" id="burger" hidden />
+    <label for="burger" class="burger" aria-label="Menu">☰</label>
+    <nav>
+      {nav.map((n) => <a href={n.href} aria-current={active(n.href) ? 'page' : undefined}>{n.label}</a>)}
+    </nav>
+  </div>
+</header>
+<style>
+  .bar { padding-inline: 1rem; background: var(--rose-deep); color: var(--cream); text-align: center; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; padding: .5rem; }
+  header { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 1px solid rgba(107,26,18,.15); }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-block: 1rem; flex-wrap: wrap; }
+  .logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1; }
+  .logo span { font-family: var(--serif); font-size: 2rem; color: var(--green); }
+  .logo small { font-family: var(--serif); font-style: italic; color: var(--rose-deep); font-size: 1rem; margin-top: .2rem; }
+  nav { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+  nav a { text-decoration: none; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; padding: .3rem 0; border-bottom: 1px solid transparent; }
+  nav a:hover, nav a[aria-current] { border-color: var(--rose); }
+  .burger { display: none; font-size: 1.6rem; cursor: pointer; }
+  @media (max-width: 860px) {
+    .row { padding-block: .7rem; gap: 1rem; flex-wrap: nowrap; }
+    .logo span { font-size: 1.6rem; }
+    .logo small { font-size: .9rem; }
+    .burger { display: block; padding: .4rem .6rem; }
+    header .row { flex-wrap: wrap; }
+    nav { display: none; flex-direction: column; width: 100%; gap: 0; padding-bottom: .5rem; }
+    nav a { padding: .9rem 0; font-size: .85rem; border-bottom: 1px solid rgba(107,26,18,.1); }
+    #burger:checked ~ nav { display: flex; }
+  }
+</style>

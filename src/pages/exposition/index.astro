@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+const labels = { geste: 'Gestes', objet: 'Objets', terroir: 'Terroirs', enjeu: 'Enjeux' } as const;
+const all = (await getCollection('expo')).sort((a, b) => a.data.order - b.data.order);
+const groups = (Object.keys(labels) as (keyof typeof labels)[]).map((k) => ({ k, items: all.filter((e) => e.data.kind === k) })).filter((g) => g.items.length);
+---
+<Base title="Exposition interactive" description="Une exposition permanente sur les savoir-faire des femmes dans les patrimoines agricoles du Maroc.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Exposition interactive</span>
+      <h1>Contempler, toucher, sentir</h1>
+      <p class="lead">Une visite qui stimule les sens : panneaux, photographies, vidéos, outils agricoles et objets à manipuler. Chaque fiche ci-dessous prolonge un élément de l'exposition, accessible par QR code sur place.</p>
+      <p><a class="btn" href="/contact">Réserver une visite</a></p>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap visit grid cols-3">
+      <div><h3>Visite</h3><p>1h à 1h30 · 100 dh par personne · offerte avec les ateliers.</p></div>
+      <div><h3>Réservation</h3><p>Uniquement sur réservation.</p></div>
+      <div><h3>Audioguide</h3><p>Un QR code par zone, en plusieurs langues.</p></div>
+    </div>
+  </section>
+  {groups.map((g) => (
+    <section class="section">
+      <div class="wrap">
+        <h2>{labels[g.k]}</h2>
+        <div class="grid cols-3">
+          {g.items.map((e) => (
+            <a class="card" href={`/exposition/${e.id}`}>
+              {e.data.image && <Image src={e.data.image} alt="" widths={[300, 500]} sizes="360px" class="cimg" />}
+              {e.data.region && <span class="eyebrow">{e.data.region}</span>}
+              <h3>{e.data.title}</h3>
+              <p>{e.data.summary}</p>
+              <span class="more">Lire la fiche →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .card { display: block; text-decoration: none; padding: 1.6rem; border: 1px solid rgba(107,26,18,.2); background: #fffaf2; transition: .2s; }
+  .card:hover { border-color: var(--rose); transform: translateY(-3px); }
+  .cimg { width: 100%; aspect-ratio: 3/2; object-fit: cover; margin-bottom: 1rem; }
+  .more { color: var(--terra); font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; }
+</style>

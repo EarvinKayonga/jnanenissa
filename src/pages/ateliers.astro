@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { ateliers } from '../data/ateliers';
+import { site } from '../data/site';
+const inclus = ['Un cours introductif et participatif', 'Une étape de fabrication', 'Un moment dégustation', "Une visite guidée de l'exposition", 'Un accès à la boutique terroir & artisanat'];
+---
+<Base title="Ateliers découvertes" description="Ateliers immersifs autour des thés, tisanes, miel, huiles et distillation, à Tanger.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Ateliers découvertes</span>
+      <h1>Expérimentez les savoir-faire marocains</h1>
+      <p class="lead">Découvrez la place essentielle des femmes dans l'agriculture, la fabrication et la valorisation des produits du terroir, et leur rôle dans la transmission des savoir-faire.</p>
+    </div>
+  </section>
+  <section class="section dark">
+    <div class="wrap grid cols-2">
+      <div>
+        <h2>Un atelier au choix</h2>
+        <p>Durée : 3h + exposition. Tarif : <strong>500 dh par personne</strong>. Une dizaine de personnes maximum, autour d'une grande table au centre de la galerie. Sur réservation uniquement.</p>
+        <a class="btn" href={`https://wa.me/${site.whatsapp.replace('+', '')}`}>Réserver sur WhatsApp</a>
+      </div>
+      <div>
+        <h3>La réservation comprend</h3>
+        <ul>{inclus.map((i) => <li>{i}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+  {ateliers.map((a, i) => (
+    <section class={`section ${i % 2 ? 'alt' : ''}`} id={a.id}>
+      <div class="wrap grid cols-2 top">
+        <div>
+          <span class="eyebrow">Atelier {i + 1}</span>
+          <h2>{a.title}</h2>
+          <p class="lead">{a.lead}</p>
+          <p class="gift">🎁 {a.gift}</p>
+        </div>
+        <div><Image src={a.image} alt={a.title} widths={[400, 700]} sizes="(min-width: 800px) 540px, 90vw" class="photo" /><ol>{a.steps.map((s) => <li>{s}</li>)}</ol></div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  ul { padding-left: 1.2rem; }
+  .top { align-items: start; }
+  ol { padding-left: 1.4rem; }
+  ol li { margin-bottom: .7rem; }
+  .photo { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: var(--radius); margin-bottom: 1.5rem; }
+  .gift { color: var(--terra); }
+</style>

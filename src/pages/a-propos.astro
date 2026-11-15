@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+const pubs = [
+  { type: 'Thèse', title: 'Thèse de doctorat de Nacima Mohamdi', where: 'HAL', href: 'https://hal.science/hal-04209649' },
+  { type: 'Article', title: 'Article scientifique', where: 'OpenEdition Journals', href: 'https://journals.openedition.org/tourisme/5937' },
+  { type: 'Presse', title: "Inside Morocco's Flourishing Flower Industry", where: 'Vogue Arabia', href: 'https://www.voguearabia.com/article/inside-moroccos-flourishing-flower-industry' },
+  { type: 'Presse', title: 'Meet the Women Reclaiming Morocco’s Rose Industry', where: 'Vogue', href: 'https://www.vogue.com/article/meet-the-women-reclaiming-moroccos-rose-industry' },
+];
+---
+<Base title="À propos" description="Nacima Mohamdi, docteure et fondatrice de la galerie Jnane nissa, et ses publications.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">À propos</span>
+      <h1>Nacima Mohamdi</h1>
+      <p class="lead">Franco-marocaine titulaire d'un doctorat, fondatrice de Jnane nissa.</p>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="wrap prose">
+      <p>Nacima Mohamdi a consacré sa thèse aux femmes et aux patrimoines agricoles du Maroc, en particulier à la filière de la rose. Jnane nissa prolonge ce travail de recherche en l'ouvrant au grand public : un lieu où l'on voit, touche, sent et goûte le travail des femmes.</p>
+      <p>Le coin lecture de la galerie rassemble sa thèse, les numéros de revue où elle est citée et des ouvrages sur l'agriculture, les femmes et l'artisanat.</p>
+      <p><em>Texte à compléter avec la biographie de Nacima.</em></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Publications et presse</span>
+      <h2>Lire, regarder</h2>
+      <div class="grid cols-2 pubs">
+        {pubs.map((p) => (
+          <a class="pub" href={p.href} target="_blank" rel="noopener">
+            <span class="eyebrow">{p.type}</span>
+            <h3>{p.title}</h3>
+            <p>{p.where} ↗</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section dark">
+    <div class="wrap">
+      <span class="eyebrow">Vidéo</span>
+      <h2>Regarder</h2>
+      <div class="video">
+        <iframe src="https://www.youtube-nocookie.com/embed/ZzmV3wjt0ZU" title="Vidéo Jnane nissa" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p style="margin-top:1.2rem"><a href="https://youtu.be/ZzmV3wjt0ZU" target="_blank" rel="noopener" style="text-decoration:underline">Voir sur YouTube ↗</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .pubs { align-items: stretch; }
+  .pub { display: block; padding: 1.6rem; border: 1px solid rgba(107,26,18,.2); background: #fffaf2; text-decoration: none; transition: .2s; }
+  .pub:hover { border-color: var(--rose); }
+  .video { aspect-ratio: 16/9; max-width: 860px; }
+  iframe { width: 100%; height: 100%; border: 0; }
+</style>
