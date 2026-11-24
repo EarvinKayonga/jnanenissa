@@ -1,59 +1,160 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-const pubs = [
-  { type: 'Thèse', title: 'Thèse de doctorat de Nacima Mohamdi', where: 'HAL', href: 'https://hal.science/hal-04209649' },
-  { type: 'Article', title: 'Article scientifique', where: 'OpenEdition Journals', href: 'https://journals.openedition.org/tourisme/5937' },
-  { type: 'Presse', title: "Inside Morocco's Flourishing Flower Industry", where: 'Vogue Arabia', href: 'https://www.voguearabia.com/article/inside-moroccos-flourishing-flower-industry' },
-  { type: 'Presse', title: 'Meet the Women Reclaiming Morocco’s Rose Industry', where: 'Vogue', href: 'https://www.vogue.com/article/meet-the-women-reclaiming-moroccos-rose-industry' },
+import echappees from '../assets/presse/echappees.png';
+import arte from '../assets/presse/arte.png';
+
+const presseEcrite = [
+  { media: 'Marie Claire', country: 'Brésil', title: 'La vie en rose', date: '25 août 2025' },
+  { media: 'Marie Claire', country: 'Pays-Bas', title: 'La vie en rose', date: '2025' },
+  { media: 'Marie Claire', country: 'Australie', title: 'Valley of the rose', date: '1 nov. 2025' },
+  { media: 'GÉO', country: '', title: 'Marokko : Im Tal der Rosen', date: '14 nov. 2025' },
+  { media: 'Vogue', country: 'Arabia', title: "Inside Morocco's Flourishing Flower Industry", date: '31 janv. 2026', href: 'https://www.voguearabia.com/article/inside-moroccos-flourishing-flower-industry' },
+  { media: 'Internazionale', country: '', title: 'Industria fiorente', date: '13 févr. 2026' },
+  { media: 'Echo', country: 'Magazine', title: 'Un parfum de prospérité', date: '7 mai 2026' },
+  { media: 'Vogue', country: 'United States', title: 'Meet the Women Reclaiming Morocco’s Rose Industry', date: '25 mai 2026', href: 'https://www.vogue.com/article/meet-the-women-reclaiming-moroccos-rose-industry' },
 ];
+
+const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
+const ig = site.instagram;
 ---
-<Base title="À propos" description="Nacima Mohamdi, docteure et fondatrice de la galerie Jnane nissa, et ses publications.">
+<Base title="À propos" description="Jnane nissa, « le champ des femmes » : l'histoire de la galerie, Nacima Mohamdi et la presse qui en parle.">
   <section class="page-head">
     <div class="wrap">
       <span class="eyebrow">À propos</span>
-      <h1>Nacima Mohamdi</h1>
-      <p class="lead">Franco-marocaine titulaire d'un doctorat, fondatrice de Jnane nissa.</p>
+      <h1>Notre histoire</h1>
+      <p class="lead">Jnane nissa, « le champ des femmes ».</p>
     </div>
   </section>
+
   <section class="section alt">
     <div class="wrap prose">
-      <p>Nacima Mohamdi a consacré sa thèse aux femmes et aux patrimoines agricoles du Maroc, en particulier à la filière de la rose. Jnane nissa prolonge ce travail de recherche en l'ouvrant au grand public : un lieu où l'on voit, touche, sent et goûte le travail des femmes.</p>
-      <p>Le coin lecture de la galerie rassemble sa thèse, les numéros de revue où elle est citée et des ouvrages sur l'agriculture, les femmes et l'artisanat.</p>
-      <p><em>Texte à compléter avec la biographie de Nacima.</em></p>
+      <p>En lettres latines, <strong>Jnane nissa</strong> signifie en arabe « le champ des femmes ». Le mot évoque à la fois la terre sur laquelle les femmes travaillent et un espace où leurs voix, leurs récits et leurs expériences peuvent s'exprimer.</p>
+      <p>Jnane nissa souhaite mettre en lumière le rôle essentiel des femmes dans la préservation et la valorisation des patrimoines agricoles et artisanaux marocains. Aujourd'hui, de nombreux territoires au Maroc et ailleurs dans le monde sont reconnus pour leurs produits de terroir ou leurs savoir-faire artisanaux. Derrière ces productions, ce sont bien souvent des femmes qui travaillent, transforment et transmettent les connaissances qui leur donnent vie, sans toujours bénéficier de la reconnaissance qu'elles méritent.</p>
+      <p>À travers ses expositions, ses ateliers et sa boutique dédiée aux produits de terroir et à l'artisanat, Jnane nissa est un lieu de découverte et de rencontre. Chacun est invité à explorer les patrimoines marocains, à écouter les histoires de celles qui les font vivre, à s'interroger sur la place des femmes et à découvrir ou redécouvrir les produits et les savoir-faire qui façonnent les territoires.</p>
+      <p>Pour suivre notre aventure, <a href={ig} target="_blank" rel="noopener">retrouvez-nous sur Instagram</a>.</p>
     </div>
   </section>
+
+  <section class="section" id="fondatrice">
+    <div class="wrap grid cols-2 founder">
+      <div>
+        <span class="eyebrow">La fondatrice</span>
+        <h2>Nacima Mohamdi</h2>
+        <p class="role">Franco-marocaine · Docteure en géographie, Université Paris 1 Panthéon-Sorbonne</p>
+        <p>Nacima Mohamdi est spécialisée dans l'étude des dynamiques de genre liées à la valorisation touristique et patrimoniale des patrimoines agricoles et des territoires.</p>
+        <p>Ses recherches l'ont conduite à s'intéresser particulièrement à la place des femmes dans la production, la transformation et la valorisation des produits de terroir, ainsi qu'à leur rôle dans la préservation et la transmission des savoir-faire.</p>
+        <p>C'est de ce parcours, nourri par ses recherches, son attachement aux patrimoines marocains et surtout ses rencontres avec de nombreuses femmes et le recueil de leurs récits, qu'est née l'envie de créer Jnane nissa. Désormais concrétisé, ce projet est devenu un lieu culturel qui rassemble toutes celles et ceux qui souhaitent découvrir les patrimoines à travers les regards, les histoires et les récits des femmes qui les font vivre au quotidien.</p>
+      </div>
+      <div class="video-slot">
+        <span class="eyebrow">Interview</span>
+        <p>Une vidéo de Nacima Mohamdi, également publiée sur Instagram, arrive bientôt.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="presse">
+    <div class="wrap">
+      <span class="eyebrow">Ils parlent de nous</span>
+      <h2>Presse écrite</h2>
+      <div class="press-grid">
+        {presseEcrite.map((p) => {
+          const Tag = p.href ? 'a' : 'div';
+          return (
+            <Tag class="press-card" href={p.href} target={p.href ? '_blank' : undefined} rel={p.href ? 'noopener' : undefined}>
+              <div class="press-logo">
+                <span class="media">{p.media}</span>
+                {p.country && <span class="country">{p.country}</span>}
+              </div>
+              <h3>{p.title}</h3>
+              <p class="date">{p.date}{p.href && <span class="read"> · Lire l'article ↗</span>}</p>
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap">
-      <span class="eyebrow">Publications et presse</span>
-      <h2>Lire, regarder</h2>
-      <div class="grid cols-2 pubs">
-        {pubs.map((p) => (
-          <a class="pub" href={p.href} target="_blank" rel="noopener">
-            <span class="eyebrow">{p.type}</span>
-            <h3>{p.title}</h3>
-            <p>{p.where} ↗</p>
-          </a>
-        ))}
+      <span class="eyebrow">Ils parlent de nous</span>
+      <h2>Télévision et documentaires</h2>
+      <div class="grid cols-2 tv">
+        <a class="tv-card" href="https://youtu.be/ZzmV3wjt0ZU" target="_blank" rel="noopener">
+          <Image src={echappees} alt="Échappées belles" class="tv-logo" width={686} height={199} />
+          <p>Replay disponible sur YouTube ↗</p>
+        </a>
+        <div class="tv-card soon">
+          <Image src={arte} alt="Arte" class="tv-logo" width={1000} height={182} />
+          <p>Film en cours de production</p>
+        </div>
       </div>
     </div>
   </section>
-  <section class="section dark">
+
+  <section class="section dark" id="rejoindre">
     <div class="wrap">
-      <span class="eyebrow">Vidéo</span>
-      <h2>Regarder</h2>
-      <div class="video">
-        <iframe src="https://www.youtube-nocookie.com/embed/ZzmV3wjt0ZU" title="Vidéo Jnane nissa" loading="lazy" allowfullscreen></iframe>
+      <span class="eyebrow">Rejoindre l'aventure</span>
+      <h2>Jnane nissa est avant tout une aventure collective</h2>
+      <p class="lead">Elle se construit avec les femmes et les hommes qui font vivre les patrimoines, mais aussi avec celles et ceux qui souhaitent les découvrir, les transmettre et les faire connaître.</p>
+
+      <div class="grid cols-2 join">
+        <div>
+          <h3>Vous êtes productrice, producteur, artisane ou artisan ?</h3>
+          <p>Vous souhaitez faire découvrir vos produits et partager votre savoir-faire ? Jnane nissa vous invite à rejoindre son espace de vente et d'exposition à Tanger. Au-delà de vos produits, nous souhaitons raconter votre histoire, valoriser votre travail et faire connaître les gestes et savoir-faire que vous perpétuez et transmettez de génération en génération.</p>
+          <p>Pour nous présenter votre démarche, indiquez :</p>
+          <ul>
+            <li>Nom et prénom, ou nom de la coopérative ou de l'entreprise</li>
+            <li>Région et localité de production</li>
+            <li>Type de produits proposés</li>
+            <li>Présentation de votre activité et de votre savoir-faire</li>
+            <li>Coordonnées, et si possible quelques photographies</li>
+          </ul>
+          <a class="btn" href={mailto('Proposition de produit ou savoir-faire')}>Nous écrire</a>
+        </div>
+        <div>
+          <h3>Vous souhaitez suivre notre actualité ?</h3>
+          <p>Nouveaux produits, ateliers, rencontres, événements et actualités de l'exposition.</p>
+          <ul class="links">
+            <li><a href={ig} target="_blank" rel="noopener">Suivez-nous sur Instagram ↗</a><span>Coulisses du lieu et nouveautés</span></li>
+            <li><a href="/boutique">Consultez notre catalogue</a><span>Produits de terroir et d'artisanat</span></li>
+            <li><a href="/contact">Une question ?</a><span>Produits, ateliers ou expositions : écrivez-nous</span></li>
+          </ul>
+        </div>
       </div>
-      <p style="margin-top:1.2rem"><a href="https://youtu.be/ZzmV3wjt0ZU" target="_blank" rel="noopener" style="text-decoration:underline">Voir sur YouTube ↗</a></p>
     </div>
   </section>
 </Base>
 
 <style>
-  .pubs { align-items: stretch; }
-  .pub { display: block; padding: 1.6rem; border: 1px solid rgba(107,26,18,.2); background: #fffaf2; text-decoration: none; transition: .2s; }
-  .pub:hover { border-color: var(--rose); }
-  .video { aspect-ratio: 16/9; max-width: 860px; }
-  iframe { width: 100%; height: 100%; border: 0; }
+  .founder { align-items: start; }
+  .role { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--terra); }
+  .video-slot { border: 1px dashed rgba(107,26,18,.35); padding: 2.5rem 2rem; text-align: center; background: #fffaf2; }
+  .video-slot p { opacity: .75; margin: 0; }
+
+  .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 1.4rem; margin-top: 2rem; }
+  .press-card { display: block; text-decoration: none; color: inherit; }
+  .press-logo { aspect-ratio: 4/5; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; text-align: center; padding: 1rem; margin-bottom: 1rem; transition: .2s; }
+  .press-card:hover .press-logo { border-color: var(--rose); }
+  .media { font-family: var(--sans); font-weight: 500; font-size: 1.35rem; letter-spacing: .02em; color: var(--green); text-transform: uppercase; line-height: 1.1; }
+  .country { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
+  .press-card h3 { font-size: 1.15rem; margin-bottom: .3rem; }
+  .date { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin: 0; }
+  .read { color: var(--terra); }
+
+  .tv { align-items: stretch; margin-top: 2rem; }
+  .tv-card { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 2.2rem; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); text-decoration: none; color: inherit; transition: .2s; }
+  a.tv-card:hover { border-color: var(--rose); }
+  .tv-logo { height: 64px; width: auto; object-fit: contain; object-position: left; }
+  .tv-card p { margin: 0; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--terra); }
+  .soon p { opacity: .7; color: var(--green); }
+
+  .join { margin-top: 3rem; align-items: start; }
+  .join h3 { font-size: 1.6rem; }
+  .join ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+  .join li { padding: .6rem 0; border-bottom: 1px solid rgba(250,247,241,.2); }
+  .join .links li { display: flex; flex-direction: column; gap: .2rem; }
+  .join .links a { font-family: var(--serif); font-size: 1.3rem; }
+  .join .links span { opacity: .7; font-size: .9rem; }
 </style>
