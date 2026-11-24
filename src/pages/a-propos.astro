@@ -4,16 +4,30 @@ import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 import echappees from '../assets/presse/echappees.png';
 import arte from '../assets/presse/arte.png';
+import geo from '../assets/presse/geo.png';
+import vogueMagazine from '../assets/presse/vogue-magazine.png';
+import vogue from '../assets/presse/vogue.png';
+import mcAustralie from '../assets/presse/marie-claire-australie.png';
+import mcBresil from '../assets/presse/marie-claire-bresil.png';
+import mcPaysBas from '../assets/presse/marie-claire-pays-bas.png';
+import echo from '../assets/presse/echo.png';
 
 const presseEcrite = [
-  { media: 'Marie Claire', country: 'Brésil', title: 'La vie en rose', date: '25 août 2025' },
-  { media: 'Marie Claire', country: 'Pays-Bas', title: 'La vie en rose', date: '2025' },
-  { media: 'Marie Claire', country: 'Australie', title: 'Valley of the rose', date: '1 nov. 2025' },
-  { media: 'GÉO', country: '', title: 'Marokko : Im Tal der Rosen', date: '14 nov. 2025' },
-  { media: 'Vogue', country: 'Arabia', title: "Inside Morocco's Flourishing Flower Industry", date: '31 janv. 2026', href: 'https://www.voguearabia.com/article/inside-moroccos-flourishing-flower-industry' },
-  { media: 'Internazionale', country: '', title: 'Industria fiorente', date: '13 févr. 2026' },
-  { media: 'Echo', country: 'Magazine', title: 'Un parfum de prospérité', date: '7 mai 2026' },
-  { media: 'Vogue', country: 'United States', title: 'Meet the Women Reclaiming Morocco’s Rose Industry', date: '25 mai 2026', href: 'https://www.vogue.com/article/meet-the-women-reclaiming-moroccos-rose-industry' },
+  { media: 'Marie Claire', country: 'Brésil', logo: mcBresil, title: 'La vie en rose', date: '25 août 2025' },
+  { media: 'Marie Claire', country: 'Pays-Bas', logo: mcPaysBas, title: 'La vie en rose', date: '2025' },
+  { media: 'Marie Claire', country: 'Australie', logo: mcAustralie, title: 'Valley of the rose', date: '1 nov. 2025' },
+  { media: 'GÉO', logo: geo, title: 'Marokko : Im Tal der Rosen', date: '14 nov. 2025' },
+  { media: 'Vogue', country: 'Arabia', logo: vogueMagazine, title: "Inside Morocco's Flourishing Flower Industry", date: '31 janv. 2026', href: 'https://www.voguearabia.com/article/inside-moroccos-flourishing-flower-industry' },
+  { media: 'Internazionale', title: 'Industria fiorente', date: '13 févr. 2026' },
+  { media: 'Echo', country: 'Magazine', logo: echo, title: 'Un parfum de prospérité', date: '7 mai 2026' },
+  { media: 'Vogue', country: 'United States', logo: vogue, title: 'Meet the Women Reclaiming Morocco’s Rose Industry', date: '25 mai 2026', href: 'https://www.vogue.com/article/meet-the-women-reclaiming-moroccos-rose-industry' },
+];
+
+const tabs = [
+  { id: 'histoire', label: 'Notre histoire' },
+  { id: 'fondatrice', label: 'La fondatrice' },
+  { id: 'presse', label: 'Ils parlent de nous' },
+  { id: 'rejoindre', label: 'Rejoindre l’aventure' },
 ];
 
 const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
@@ -28,16 +42,24 @@ const ig = site.instagram;
     </div>
   </section>
 
-  <section class="section alt">
+  <nav class="tabs" aria-label="Rubriques de la page">
+    <div class="wrap tabs-inner" role="tablist">
+      {tabs.map((t, i) => (
+        <button type="button" role="tab" data-tab={t.id} aria-controls={t.id} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
+      ))}
+    </div>
+  </nav>
+
+  <div class="panel alt" id="histoire" role="tabpanel">
     <div class="wrap prose">
       <p>En lettres latines, <strong>Jnane nissa</strong> signifie en arabe « le champ des femmes ». Le mot évoque à la fois la terre sur laquelle les femmes travaillent et un espace où leurs voix, leurs récits et leurs expériences peuvent s'exprimer.</p>
       <p>Jnane nissa souhaite mettre en lumière le rôle essentiel des femmes dans la préservation et la valorisation des patrimoines agricoles et artisanaux marocains. Aujourd'hui, de nombreux territoires au Maroc et ailleurs dans le monde sont reconnus pour leurs produits de terroir ou leurs savoir-faire artisanaux. Derrière ces productions, ce sont bien souvent des femmes qui travaillent, transforment et transmettent les connaissances qui leur donnent vie, sans toujours bénéficier de la reconnaissance qu'elles méritent.</p>
       <p>À travers ses expositions, ses ateliers et sa boutique dédiée aux produits de terroir et à l'artisanat, Jnane nissa est un lieu de découverte et de rencontre. Chacun est invité à explorer les patrimoines marocains, à écouter les histoires de celles qui les font vivre, à s'interroger sur la place des femmes et à découvrir ou redécouvrir les produits et les savoir-faire qui façonnent les territoires.</p>
       <p>Pour suivre notre aventure, <a href={ig} target="_blank" rel="noopener">retrouvez-nous sur Instagram</a>.</p>
     </div>
-  </section>
+  </div>
 
-  <section class="section" id="fondatrice">
+  <div class="panel" id="fondatrice" role="tabpanel" hidden>
     <div class="wrap grid cols-2 founder">
       <div>
         <span class="eyebrow">La fondatrice</span>
@@ -52,20 +74,26 @@ const ig = site.instagram;
         <p>Une vidéo de Nacima Mohamdi, également publiée sur Instagram, arrive bientôt.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="section alt" id="presse">
+  <div class="panel alt" id="presse" role="tabpanel" hidden>
     <div class="wrap">
-      <span class="eyebrow">Ils parlent de nous</span>
-      <h2>Presse écrite</h2>
+      <span class="eyebrow">Presse écrite</span>
+      <h2>Ils parlent de nous</h2>
       <div class="press-grid">
         {presseEcrite.map((p) => {
           const Tag = p.href ? 'a' : 'div';
           return (
             <Tag class="press-card" href={p.href} target={p.href ? '_blank' : undefined} rel={p.href ? 'noopener' : undefined}>
               <div class="press-logo">
-                <span class="media">{p.media}</span>
-                {p.country && <span class="country">{p.country}</span>}
+                {p.logo ? (
+                  <Image src={p.logo} alt={`${p.media}${p.country ? ' ' + p.country : ''}`} class="press-img" widths={[300, 500]} sizes="230px" />
+                ) : (
+                  <>
+                    <span class="media">{p.media}</span>
+                    {p.country && <span class="country">{p.country}</span>}
+                  </>
+                )}
               </div>
               <h3>{p.title}</h3>
               <p class="date">{p.date}{p.href && <span class="read"> · Lire l'article ↗</span>}</p>
@@ -73,13 +101,8 @@ const ig = site.instagram;
           );
         })}
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="wrap">
-      <span class="eyebrow">Ils parlent de nous</span>
-      <h2>Télévision et documentaires</h2>
+      <span class="eyebrow tv-eyebrow">Télévision et documentaires</span>
       <div class="grid cols-2 tv">
         <a class="tv-card" href="https://youtu.be/ZzmV3wjt0ZU" target="_blank" rel="noopener">
           <Image src={echappees} alt="Échappées belles" class="tv-logo" width={686} height={199} />
@@ -91,9 +114,9 @@ const ig = site.instagram;
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="section dark" id="rejoindre">
+  <div class="panel dark" id="rejoindre" role="tabpanel" hidden>
     <div class="wrap">
       <span class="eyebrow">Rejoindre l'aventure</span>
       <h2>Jnane nissa est avant tout une aventure collective</h2>
@@ -124,10 +147,62 @@ const ig = site.instagram;
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </Base>
 
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+  const panels = [...document.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+  const ids = tabs.map((t) => t.dataset.tab as string);
+
+  function show(id: string, updateHash = true) {
+    if (!ids.includes(id)) id = ids[0];
+    tabs.forEach((t) => {
+      const on = t.dataset.tab === id;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach((p) => (p.hidden = p.id !== id));
+    if (updateHash) history.replaceState(null, '', `#${id}`);
+  }
+
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t.dataset.tab as string));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+      tabs[next].focus();
+      show(ids[next]);
+    });
+  });
+
+  show(location.hash.slice(1), false);
+  window.addEventListener('hashchange', () => show(location.hash.slice(1), false));
+</script>
+
 <style>
+  .tabs { background: var(--cream); border-bottom: 1px solid rgba(107,26,18,.15); }
+  .tabs-inner { display: flex; gap: 2rem; overflow-x: auto; scrollbar-width: none; }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  [role="tab"] { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: 1.1rem 0 .9rem; font: inherit; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; white-space: nowrap; }
+  [role="tab"]:hover { color: var(--rose-deep); }
+  [role="tab"][aria-selected="true"] { border-bottom-color: var(--rose); color: var(--green); }
+  [role="tab"]:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+
+  @media (max-width: 700px) {
+    .tabs-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; overflow: visible; }
+    [role="tab"] { padding: 1rem .5rem; text-align: center; white-space: normal; font-size: .7rem; letter-spacing: .12em; border-bottom: 2px solid transparent; border-right: 1px solid rgba(107,26,18,.12); min-height: 3.2rem; }
+    [role="tab"]:nth-child(2n) { border-right: 0; }
+    [role="tab"]:nth-child(-n+2) { border-bottom-color: rgba(107,26,18,.12); }
+    [role="tab"][aria-selected="true"] { background: #fffaf2; }
+  }
+
+  .panel { padding: 4.5rem 0; }
+  .panel.alt { background: var(--sand); }
+  .panel.dark { background: var(--green); color: var(--cream); }
+  .panel.dark h2, .panel.dark h3 { color: var(--cream); }
+  .panel[hidden] { display: none; }
+
   .founder { align-items: start; }
   .role { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--terra); }
   .video-slot { border: 1px dashed rgba(107,26,18,.35); padding: 2.5rem 2rem; text-align: center; background: #fffaf2; }
@@ -135,15 +210,17 @@ const ig = site.instagram;
 
   .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 1.4rem; margin-top: 2rem; }
   .press-card { display: block; text-decoration: none; color: inherit; }
-  .press-logo { aspect-ratio: 4/5; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; text-align: center; padding: 1rem; margin-bottom: 1rem; transition: .2s; }
+  .press-logo { aspect-ratio: 4/3; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; text-align: center; padding: 1.2rem; margin-bottom: 1rem; transition: .2s; }
   .press-card:hover .press-logo { border-color: var(--rose); }
+  .press-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
   .media { font-family: var(--sans); font-weight: 500; font-size: 1.35rem; letter-spacing: .02em; color: var(--green); text-transform: uppercase; line-height: 1.1; }
   .country { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
   .press-card h3 { font-size: 1.15rem; margin-bottom: .3rem; }
   .date { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin: 0; }
   .read { color: var(--terra); }
 
-  .tv { align-items: stretch; margin-top: 2rem; }
+  .tv-eyebrow { display: block; margin-top: 4rem; }
+  .tv { align-items: stretch; margin-top: 1.5rem; }
   .tv-card { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 2.2rem; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); text-decoration: none; color: inherit; transition: .2s; }
   a.tv-card:hover { border-color: var(--rose); }
   .tv-logo { height: 64px; width: auto; object-fit: contain; object-position: left; }
