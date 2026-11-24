@@ -2,6 +2,13 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
+import roses from '../assets/photos/mock-roses.jpg';
+import tressage from '../assets/photos/mock-tressage.jpg';
+import kasbah from '../assets/photos/mock-kasbah.jpg';
+import poterie from '../assets/photos/mock-poterie.jpg';
+import expo from '../assets/photos/mock-expo.jpg';
+import atelier from '../assets/photos/mock-atelier.jpg';
+import boutique from '../assets/photos/mock-boutique.jpg';
 import echappees from '../assets/presse/echappees.png';
 import arte from '../assets/presse/arte.png';
 import geo from '../assets/presse/geo.png';
@@ -9,8 +16,11 @@ import vogueMagazine from '../assets/presse/vogue-magazine.png';
 import vogue from '../assets/presse/vogue.png';
 import mcAustralie from '../assets/presse/marie-claire-australie.png';
 import mcBresil from '../assets/presse/marie-claire-bresil.png';
+import internazionale from '../assets/presse/internazionale.png';
 import mcPaysBas from '../assets/presse/marie-claire-pays-bas.png';
 import echo from '../assets/presse/echo.png';
+import rameau from '../assets/illustrations/rameau.svg';
+import ornement from '../assets/illustrations/ornement.svg';
 
 const presseEcrite = [
   { media: 'Marie Claire', country: 'Brésil', logo: mcBresil, title: 'La vie en rose', date: '25 août 2025' },
@@ -18,7 +28,7 @@ const presseEcrite = [
   { media: 'Marie Claire', country: 'Australie', logo: mcAustralie, title: 'Valley of the rose', date: '1 nov. 2025' },
   { media: 'GÉO', logo: geo, title: 'Marokko : Im Tal der Rosen', date: '14 nov. 2025' },
   { media: 'Vogue', country: 'Arabia', logo: vogueMagazine, title: "Inside Morocco's Flourishing Flower Industry", date: '31 janv. 2026', href: 'https://www.voguearabia.com/article/inside-moroccos-flourishing-flower-industry' },
-  { media: 'Internazionale', title: 'Industria fiorente', date: '13 févr. 2026' },
+  { media: 'Internazionale', logo: internazionale, title: 'Industria fiorente', date: '13 févr. 2026' },
   { media: 'Echo', country: 'Magazine', logo: echo, title: 'Un parfum de prospérité', date: '7 mai 2026' },
   { media: 'Vogue', country: 'United States', logo: vogue, title: 'Meet the Women Reclaiming Morocco’s Rose Industry', date: '25 mai 2026', href: 'https://www.vogue.com/article/meet-the-women-reclaiming-moroccos-rose-industry' },
 ];
@@ -37,38 +47,97 @@ const ig = site.instagram;
   <nav class="tabs" aria-label="Rubriques de la page">
     <div class="wrap tabs-inner" role="tablist">
       {tabs.map((t, i) => (
-        <button type="button" role="tab" data-tab={t.id} aria-controls={t.id} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
+        <button type="button" role="tab" data-tab={t.id} aria-controls={`panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
       ))}
     </div>
   </nav>
 
-  <div class="panel alt" id="histoire" role="tabpanel">
-    <div class="wrap prose">
-      <p>En lettres latines, <strong>Jnane nissa</strong> signifie en arabe « le champ des femmes ». Le mot évoque à la fois la terre sur laquelle les femmes travaillent et un espace où leurs voix, leurs récits et leurs expériences peuvent s'exprimer.</p>
-      <p>Jnane nissa souhaite mettre en lumière le rôle essentiel des femmes dans la préservation et la valorisation des patrimoines agricoles et artisanaux marocains. Aujourd'hui, de nombreux territoires au Maroc et ailleurs dans le monde sont reconnus pour leurs produits de terroir ou leurs savoir-faire artisanaux. Derrière ces productions, ce sont bien souvent des femmes qui travaillent, transforment et transmettent les connaissances qui leur donnent vie, sans toujours bénéficier de la reconnaissance qu'elles méritent.</p>
-      <p>À travers ses expositions, ses ateliers et sa boutique dédiée aux produits de terroir et à l'artisanat, Jnane nissa est un lieu de découverte et de rencontre. Chacun est invité à explorer les patrimoines marocains, à écouter les histoires de celles qui les font vivre, à s'interroger sur la place des femmes et à découvrir ou redécouvrir les produits et les savoir-faire qui façonnent les territoires.</p>
-      <p>Pour suivre notre aventure, <a href={ig} target="_blank" rel="noopener">retrouvez-nous sur Instagram</a>.</p>
+  <div class="panel" id="panel-histoire" role="tabpanel">
+    <div class="split">
+      <div class="split-text">
+        <span class="eyebrow">Notre histoire</span>
+        <h2>Que signifie Jnane nissa ?</h2>
+        <p class="lead">En lettres latines, <strong>Jnane nissa</strong> signifie en arabe « le champ des femmes ». Le mot évoque à la fois la terre sur laquelle les femmes travaillent et un espace où leurs voix, leurs récits et leurs expériences peuvent s'exprimer.</p>
+      </div>
+      <Image src={roses} alt="Une femme cueille des roses dans un champ" widths={[528]} sizes="(min-width: 800px) 50vw, 100vw" class="split-img" />
+    </div>
+
+    <div class="wrap block grid cols-2 vision">
+      <div>
+        <h2>Jnane nissa met en lumière les femmes et leurs savoir-faire.</h2>
+        <p>Jnane nissa souhaite mettre en lumière le rôle essentiel des femmes dans la préservation et la valorisation des patrimoines agricoles et artisanaux marocains.</p>
+        <p>Aujourd'hui, de nombreux territoires au Maroc et ailleurs dans le monde sont reconnus pour leurs produits de terroir ou leurs savoir-faire artisanaux. Derrière ces productions, ce sont bien souvent des femmes qui travaillent, transforment et transmettent les connaissances qui leur donnent vie, sans toujours bénéficier de la reconnaissance qu'elles méritent.</p>
+      </div>
+      <div class="arches">
+        <div class="arch terre">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 46 V12" /><path d="M24 12 C19 9 19 4 24 1 C29 4 29 9 24 12Z" /><path d="M24 24 C16 24 11 19 10 14 C17 14 23 18 24 24Z" /><path d="M24 22 C32 22 37 17 38 12 C31 12 25 16 24 22Z" /><path d="M24 36 C16 36 11 31 10 26 C17 26 23 30 24 36Z" /><path d="M24 34 C32 34 37 29 38 24 C31 24 25 28 24 34Z" /></svg>
+          <h3>Terre</h3><p>Le lieu où les femmes travaillent, cultivent et transforment.</p>
+        </div>
+        <div class="arch histoire-arch">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6 C13 6 5 12 5 20 C5 25 8 29 13 32 L11 42 L21 34 C22 34 23 34 24 34 C35 34 43 28 43 20 C43 12 35 6 24 6Z" /></svg>
+          <h3>Histoire</h3><p>Un espace où leurs voix, leurs récits et leurs expériences peuvent s'exprimer.</p>
+        </div>
+        <div class="arch transmission">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 44 C10 38 8 32 8 26 V14 C8 12 12 12 12 14 V24 M12 24 V8 C12 6 16 6 16 8 V22 M16 22 V6 C16 4 20 4 20 6 V22 M20 22 V8 C20 6 24 6 24 8 V28 C26 24 30 20 34 22 C36 24 34 28 30 34 C28 38 28 40 28 44" /></svg>
+          <h3>Transmission</h3><p>Des savoir-faire transmis de génération en génération.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div class="strip-text">
+        <h2>Faire découvrir celles et ceux qui font vivre les patrimoines.</h2>
+        <p>À travers ses expositions, ses ateliers et sa boutique dédiée aux produits de terroir et à l'artisanat, Jnane nissa est un lieu de découverte et de rencontre.</p>
+        <p>Chacun est invité à explorer les patrimoines marocains, à écouter les histoires de celles qui les font vivre, à s'interroger sur la place des femmes et à découvrir ou redécouvrir les produits et les savoir-faire qui façonnent les territoires.</p>
+        <p>Pour suivre notre aventure, <a href={ig} target="_blank" rel="noopener">retrouvez-nous sur Instagram</a>.</p>
+      </div>
+      <Image src={tressage} alt="Mains qui tressent une natte" widths={[236]} sizes="25vw" class="strip-img" />
+      <Image src={kasbah} alt="Kasbah et palmeraie" widths={[208]} sizes="25vw" class="strip-img" />
+      <Image src={poterie} alt="Mains qui façonnent une poterie" widths={[226]} sizes="25vw" class="strip-img" />
+    </div>
+
+    <div class="wrap block">
+      <h2>Explorer et s'immerger</h2>
+      <p class="intro">Une exposition interactive, des ateliers et une boutique pour prolonger la visite.</p>
+      <div class="grid cols-3 explore">
+        <a class="explore-card" href="/exposition">
+          <Image src={expo} alt="Salle d'exposition" widths={[170]} sizes="33vw" />
+          <span class="tag-label">Expositions</span>
+          <p>Des objets, des gestes, des territoires.</p>
+        </a>
+        <a class="explore-card" href="/ateliers">
+          <Image src={atelier} alt="Deux femmes en atelier" widths={[165]} sizes="33vw" />
+          <span class="tag-label">Ateliers</span>
+          <p>Apprendre, partager et transmettre ensemble.</p>
+        </a>
+        <a class="explore-card" href="/boutique">
+          <Image src={boutique} alt="Produits du terroir en boutique" widths={[168]} sizes="33vw" />
+          <span class="tag-label">Boutique</span>
+          <p>Rapporter un peu du champ des femmes.</p>
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="panel" id="fondatrice" role="tabpanel" hidden>
+  <div class="panel" id="panel-fondatrice" role="tabpanel" hidden>
     <div class="wrap grid cols-2 founder">
-      <div>
-        <span class="eyebrow">La fondatrice</span>
-        <h2>Nacima Mohamdi</h2>
-        <p class="role">Franco-marocaine · Docteure en géographie, Université Paris 1 Panthéon-Sorbonne</p>
+      <div class="founder-card">
+        <Image src={rameau} alt="" class="rameau" width={120} height={300} aria-hidden="true" />
+        <div class="founder-head">
+          <span class="eyebrow">La fondatrice</span>
+          <h2>Nacima Mohamdi</h2>
+          <Image src={ornement} alt="" class="ornement" width={220} height={36} aria-hidden="true" />
+          <p class="role">Franco-marocaine · Docteure en géographie, Université Paris 1 Panthéon-Sorbonne</p>
+        </div>
         <p>Nacima Mohamdi est spécialisée dans l'étude des dynamiques de genre liées à la valorisation touristique et patrimoniale des patrimoines agricoles et des territoires.</p>
         <p>Ses recherches l'ont conduite à s'intéresser particulièrement à la place des femmes dans la production, la transformation et la valorisation des produits de terroir, ainsi qu'à leur rôle dans la préservation et la transmission des savoir-faire.</p>
         <p>C'est de ce parcours, nourri par ses recherches, son attachement aux patrimoines marocains et surtout ses rencontres avec de nombreuses femmes et le recueil de leurs récits, qu'est née l'envie de créer Jnane nissa. Désormais concrétisé, ce projet est devenu un lieu culturel qui rassemble toutes celles et ceux qui souhaitent découvrir les patrimoines à travers les regards, les histoires et les récits des femmes qui les font vivre au quotidien.</p>
       </div>
-      <div class="video-slot">
-        <span class="eyebrow">Interview</span>
-        <p>Une vidéo de Nacima Mohamdi, également publiée sur Instagram, arrive bientôt.</p>
-      </div>
+      <p class="video-note">Une vidéo de Nacima Mohamdi, également publiée sur Instagram, arrive bientôt.</p>
     </div>
   </div>
 
-  <div class="panel alt" id="presse" role="tabpanel" hidden>
+  <div class="panel alt" id="panel-presse" role="tabpanel" hidden>
     <div class="wrap">
       <span class="eyebrow">Presse écrite</span>
       <h2>Ils parlent de nous</h2>
@@ -108,14 +177,14 @@ const ig = site.instagram;
     </div>
   </div>
 
-  <div class="panel dark" id="rejoindre" role="tabpanel" hidden>
+  <div class="panel" id="panel-rejoindre" role="tabpanel" hidden>
     <div class="wrap">
       <span class="eyebrow">Rejoindre l'aventure</span>
       <h2>Jnane nissa est avant tout une aventure collective</h2>
       <p class="lead">Elle se construit avec les femmes et les hommes qui font vivre les patrimoines, mais aussi avec celles et ceux qui souhaitent les découvrir, les transmettre et les faire connaître.</p>
 
       <div class="grid cols-2 join">
-        <div>
+        <div class="join-card pink">
           <h3>Vous êtes productrice, producteur, artisane ou artisan ?</h3>
           <p>Vous souhaitez faire découvrir vos produits et partager votre savoir-faire ? Jnane nissa vous invite à rejoindre son espace de vente et d'exposition à Tanger. Au-delà de vos produits, nous souhaitons raconter votre histoire, valoriser votre travail et faire connaître les gestes et savoir-faire que vous perpétuez et transmettez de génération en génération.</p>
           <p>Pour nous présenter votre démarche, indiquez :</p>
@@ -126,9 +195,9 @@ const ig = site.instagram;
             <li>Présentation de votre activité et de votre savoir-faire</li>
             <li>Coordonnées, et si possible quelques photographies</li>
           </ul>
-          <a class="btn" href={mailto('Proposition de produit ou savoir-faire')}>Nous écrire</a>
+          <a class="btn" href={mailto('Proposition de produit ou savoir-faire')}>Formulaire</a>
         </div>
-        <div>
+        <div class="join-card gold">
           <h3>Vous souhaitez suivre notre actualité ?</h3>
           <p>Nouveaux produits, ateliers, rencontres, événements et actualités de l'exposition.</p>
           <ul class="links">
@@ -147,64 +216,109 @@ const ig = site.instagram;
   const panels = [...document.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
   const ids = tabs.map((t) => t.dataset.tab as string);
 
-  function show(id: string, updateHash = true) {
+  const bar = document.querySelector<HTMLElement>('.tabs');
+  const headerEl = document.querySelector<HTMLElement>('header');
+  function measure() {
+    document.documentElement.style.setProperty('--hdr', `${headerEl?.offsetHeight ?? 84}px`);
+  }
+
+  function show(id: string, fromClick = false) {
     if (!ids.includes(id)) id = ids[0];
+    const hdr = headerEl?.offsetHeight ?? 84;
+    const barTop = bar ? bar.getBoundingClientRect().top + window.scrollY - hdr : 0;
+    if (fromClick && bar && window.scrollY > barTop) window.scrollTo({ top: barTop, behavior: 'instant' as ScrollBehavior });
     tabs.forEach((t) => {
       const on = t.dataset.tab === id;
       t.setAttribute('aria-selected', String(on));
       t.tabIndex = on ? 0 : -1;
     });
-    panels.forEach((p) => (p.hidden = p.id !== id));
-    if (updateHash) history.replaceState(null, '', `#${id}`);
+    panels.forEach((p) => (p.hidden = p.id !== `panel-${id}`));
+    const active = tabs.find((t) => t.dataset.tab === id);
+    const inner = active?.parentElement;
+    if (active && inner) inner.scrollTo({ left: active.offsetLeft - (inner.clientWidth - active.offsetWidth) / 2 });
+    history.replaceState(null, '', `#${id}`);
   }
 
   tabs.forEach((t, i) => {
-    t.addEventListener('click', () => show(t.dataset.tab as string));
+    t.addEventListener('click', () => show(t.dataset.tab as string, true));
     t.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
       const next = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
       tabs[next].focus();
-      show(ids[next]);
+      show(ids[next], true);
     });
   });
 
-  show(location.hash.slice(1), false);
-  window.addEventListener('hashchange', () => show(location.hash.slice(1), false));
+  measure();
+  window.addEventListener('resize', measure);
+  show(location.hash.slice(1));
+  window.addEventListener('hashchange', () => show(location.hash.slice(1)));
 </script>
 
 <style>
-  .tabs { background: var(--cream); border-bottom: 1px solid rgba(107,26,18,.15); }
-  .tabs-inner { display: flex; gap: 2rem; overflow-x: auto; scrollbar-width: none; }
+  .tabs { position: sticky; top: var(--hdr, 84px); z-index: 4; background: var(--cream); border-bottom: 1px solid rgba(194,100,58,.2); }
+  .tabs-inner { display: flex; gap: 2.2rem; overflow-x: auto; scrollbar-width: none; justify-content: safe center; scroll-behavior: smooth; }
   .tabs-inner::-webkit-scrollbar { display: none; }
-  [role="tab"] { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: 1.1rem 0 .9rem; font: inherit; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; white-space: nowrap; }
-  [role="tab"]:hover { color: var(--rose-deep); }
-  [role="tab"][aria-selected="true"] { border-bottom-color: var(--rose); color: var(--green); }
-  [role="tab"]:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+  [role="tab"] { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: 1.1rem 0 .9rem; font: inherit; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; white-space: nowrap; }
+  [role="tab"]:hover { color: var(--terra); }
+  [role="tab"][aria-selected="true"] { border-bottom-color: var(--terra); color: var(--terra); }
+  [role="tab"]:focus-visible { outline: 2px solid var(--terra); outline-offset: 4px; }
 
-  @media (max-width: 700px) {
-    .tabs-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; overflow: visible; }
-    [role="tab"] { padding: 1rem .5rem; text-align: center; white-space: normal; font-size: .7rem; letter-spacing: .12em; border-bottom: 2px solid transparent; border-right: 1px solid rgba(107,26,18,.12); min-height: 3.2rem; }
-    [role="tab"]:nth-child(2n) { border-right: 0; }
-    [role="tab"]:nth-child(-n+2) { border-bottom-color: rgba(107,26,18,.12); }
-    [role="tab"][aria-selected="true"] { background: #fffaf2; }
-  }
-
-  .panel { padding: 4.5rem 0; }
-  .panel.alt { background: var(--sand); }
-  .panel.dark { background: var(--green); color: var(--cream); }
-  .panel.dark h2, .panel.dark h3 { color: var(--cream); }
+  .panel { padding: 0 0 4.5rem; }
   .panel[hidden] { display: none; }
 
-  .founder { align-items: start; }
-  .role { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--terra); }
-  .video-slot { border: 1px dashed rgba(107,26,18,.35); padding: 2.5rem 2rem; text-align: center; background: #fffaf2; }
-  .video-slot p { opacity: .75; margin: 0; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; }
+  .split-text { background: var(--rose); padding: 4.5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+  .split-text h2 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); color: #4a1f17; }
+  .split-text .eyebrow { color: #7a2f1c; }
+  .split-text .lead { color: #3d1a12; font-size: 1.15rem; }
+  .split-img { width: 100%; height: 100%; object-fit: cover; min-height: 420px; }
 
+  .block { padding-top: 4.5rem; }
+  .vision { align-items: start; }
+  .vision h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--green); }
+  .arches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .arch { --shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 642' preserveAspectRatio='none'%3E%3Cpath d='M0 252 Q0 240 12 240 L12 190 C12 110 60 80 112 52 C150 32 172 18 180 0 C188 18 210 32 248 52 C300 80 348 110 348 190 L348 240 Q360 240 360 252 L360 628 Q360 642 346 642 L14 642 Q0 642 0 628 Z'/%3E%3C/svg%3E"); -webkit-mask: var(--shape) center / 100% 100% no-repeat; mask: var(--shape) center / 100% 100% no-repeat; aspect-ratio: 360 / 642; padding: 38% 1rem 2rem; text-align: center; color: var(--cream); display: flex; flex-direction: column; align-items: center; }
+  .arch svg { width: 44px; height: 44px; margin-top: -1.2rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 1rem; }
+  .arch h3 { color: inherit; font-family: var(--sans); font-weight: 500; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: .8rem; }
+  .arch p { font-size: .85rem; line-height: 1.5; margin: 0; }
+  .terre { background: var(--terra); }
+  .histoire-arch { background: var(--gold); color: #3d2a1a; }
+  .transmission { background: var(--rose); color: #3d1a12; }
+
+  .strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; margin-top: 4.5rem; background: var(--sand); }
+  .strip-text { padding: 3.5rem 2.5rem; }
+  .strip-text h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--green); }
+  .strip-text p { font-size: .95rem; }
+  .strip-img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; }
+
+  .intro { max-width: 40em; }
+  .explore { margin-top: 2rem; }
+  .explore-card { display: block; background: #fffaf2; border: 1px solid rgba(194,100,58,.2); text-decoration: none; color: inherit; transition: .2s; }
+  .explore-card:hover { border-color: var(--terra); }
+  .explore-card img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+  .tag-label { display: block; padding: 1rem 1.2rem 0; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
+  .explore-card p { padding: .4rem 1.2rem 1.3rem; margin: 0; font-size: .95rem; }
+
+  .founder { align-items: stretch; padding-top: 4.5rem; }
+  .founder-card { position: relative; overflow: hidden; background: #dfe0c4; color: var(--ink); padding: 5rem 3rem 3rem; border-radius: 260px 260px 10px 10px; }
+  .founder-head { text-align: center; margin-bottom: 1.8rem; }
+  .founder-card h2 { color: var(--green); }
+  .founder-card .eyebrow { color: var(--terra); }
+  .founder-card p { position: relative; z-index: 1; font-size: 1rem; }
+  .founder-card .founder-head p { margin: 0; }
+  .rameau { position: absolute; left: -10px; top: 40px; width: 110px; height: auto; opacity: .55; z-index: 0; pointer-events: none; }
+  .ornement { display: block; margin: .8rem auto; width: 200px; height: auto; }
+  .role { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--terra); }
+  .video-note { align-self: end; margin: 0; font-size: .82rem; font-style: italic; opacity: .55; }
+
+  .panel.alt { background: var(--sand); }
+  #panel-presse, #panel-rejoindre { padding-top: 4.5rem; }
   .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 1.4rem; margin-top: 2rem; }
   .press-card { display: block; text-decoration: none; color: inherit; }
-  .press-logo { aspect-ratio: 4/3; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; text-align: center; padding: 1.2rem; margin-bottom: 1rem; transition: .2s; }
-  .press-card:hover .press-logo { border-color: var(--rose); }
-  .press-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+  .press-logo { aspect-ratio: 4/3; background: #fffaf2; border: 1px solid rgba(194,100,58,.15); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; text-align: center; padding: 1.2rem; margin-bottom: 1rem; transition: .2s; }
+  .press-card:hover .press-logo { border-color: var(--terra); }
+  .press-img { max-width: 72%; max-height: 62%; width: auto; height: auto; object-fit: contain; }
   .media { font-family: var(--sans); font-weight: 500; font-size: 1.35rem; letter-spacing: .02em; color: var(--green); text-transform: uppercase; line-height: 1.1; }
   .country { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
   .press-card h3 { font-size: 1.15rem; margin-bottom: .3rem; }
@@ -213,17 +327,42 @@ const ig = site.instagram;
 
   .tv-eyebrow { display: block; margin-top: 4rem; }
   .tv { align-items: stretch; margin-top: 1.5rem; }
-  .tv-card { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 2.2rem; background: #fffaf2; border: 1px solid rgba(107,26,18,.12); text-decoration: none; color: inherit; transition: .2s; }
-  a.tv-card:hover { border-color: var(--rose); }
+  .tv-card { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 2.2rem; background: #fffaf2; border: 1px solid rgba(194,100,58,.15); text-decoration: none; color: inherit; transition: .2s; }
+  a.tv-card:hover { border-color: var(--terra); }
   .tv-logo { height: 64px; width: auto; object-fit: contain; object-position: left; }
   .tv-card p { margin: 0; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--terra); }
   .soon p { opacity: .7; color: var(--green); }
 
-  .join { margin-top: 3rem; align-items: start; }
-  .join h3 { font-size: 1.6rem; }
-  .join ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
-  .join li { padding: .6rem 0; border-bottom: 1px solid rgba(250,247,241,.2); }
-  .join .links li { display: flex; flex-direction: column; gap: .2rem; }
-  .join .links a { font-family: var(--serif); font-size: 1.3rem; }
-  .join .links span { opacity: .7; font-size: .9rem; }
+  .join { margin-top: 3rem; align-items: stretch; }
+  .join-card { padding: 2.6rem; border-radius: 22px; }
+  .join-card.pink { background: var(--rose); color: #3d1a12; }
+  .join-card.gold { background: var(--gold); color: #3d2a1a; }
+  .join-card h3 { font-size: 1.6rem; color: inherit; }
+  .join-card ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+  .join-card li { padding: .55rem 0; border-bottom: 1px solid rgba(61,26,18,.2); }
+  .join-card .links li { display: flex; flex-direction: column; gap: .2rem; border-bottom-color: rgba(61,42,26,.2); }
+  .join-card .links a { font-family: var(--serif); font-size: 1.3rem; color: var(--green); }
+  .join-card .links span { opacity: .8; font-size: .9rem; }
+  .join .btn { background: var(--green); border-color: var(--green); color: var(--cream); border-radius: 999px; padding: .9rem 2.4rem; }
+  .join .btn:hover { background: #4e5229; border-color: #4e5229; }
+
+  @media (max-width: 800px) {
+    .split { grid-template-columns: 1fr; }
+    .split-text { padding: 3rem 1.4rem; }
+    .split-img { min-height: 300px; }
+    .arches { grid-template-columns: 1fr; gap: 1.2rem; justify-items: center; }
+    .arch { width: min(100%, 250px); padding-left: .8rem; padding-right: .8rem; }
+    .founder-card { border-radius: 150px 150px 10px 10px; padding: 4rem 1.4rem 2rem; }
+    .video-note { align-self: start; }
+    .strip { grid-template-columns: repeat(3, 1fr); }
+    .strip-text { grid-column: 1 / -1; padding: 2.5rem 1.4rem; }
+    .strip-img { min-height: 160px; }
+    .join-card { padding: 1.6rem; }
+    .tabs-inner { gap: 1.6rem; }
+    .press-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .press-logo { padding: .6rem; }
+    .press-card h3 { font-size: 1rem; }
+    .tv { gap: 1rem; }
+    .tv-card { padding: 1.4rem; }
+  }
 </style>

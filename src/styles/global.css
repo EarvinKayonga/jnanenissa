@@ -1,12 +1,12 @@
 :root {
-  --cream: #faf7f1;
-  --sand: #f3e8d6;
-  --rose: #f0a63a;
-  --rose-deep: #b84e14;
-  --green: #6b1a12;
-  --terra: #b84e14;
-  --gold: #c9a24a;
-  --ink: #3b1e17;
+  --cream: #f7f1e8;
+  --sand: #f1e4d3;
+  --rose: #efb0a2;
+  --rose-deep: #c2643a;
+  --green: #676b39;
+  --terra: #c2643a;
+  --gold: #f5c475;
+  --ink: #3d2a1a;
   --radius: 4px;
   --max: 1180px;
   --serif: 'Cormorant Garamond', Georgia, serif;
@@ -28,7 +28,7 @@ p { margin: 0 0 1em; }
 .dark { background: var(--green); color: var(--cream); }
 .dark h1, .dark h2, .dark h3 { color: var(--cream); }
 .eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: .75rem; color: var(--terra); margin-bottom: 1rem; display: block; }
-.dark .eyebrow { color: #f0a63a; }
+.dark .eyebrow { color: #f5c475; }
 .lead { font-size: 1.25rem; max-width: 40em; }
 .btn { display: inline-block; margin: 0 .4rem .6rem 0; text-align: center; padding: .85rem 1.8rem; border: 1px solid var(--green); background: var(--green); color: var(--cream); text-decoration: none; text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; transition: .2s; }
 .btn:hover { background: var(--rose-deep); border-color: var(--rose-deep); }

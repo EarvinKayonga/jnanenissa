@@ -1,12 +1,20 @@
 ---
+import { Image } from 'astro:assets';
 import { nav, site } from '../data/site';
+import porte from '../assets/photos/mock-porte.jpg';
+const wa = `https://wa.me/${site.whatsapp.replace('+', '')}`;
 ---
 <footer>
-  <div class="wrap grid cols-3">
+  <div class="wrap grid cols">
     <div>
       <p class="brand">{site.name}</p>
       <p class="ar" dir="rtl">{site.arabic}</p>
-      <p>{site.tagline}.</p>
+      <p class="tag">{site.tagline}.</p>
+      <p class="social">
+        <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a href={wa} target="_blank" rel="noopener">WhatsApp</a>
+        <a href={`mailto:${site.email}`}>Email</a>
+      </p>
     </div>
     <div>
       <h4>Explorer</h4>
@@ -17,23 +25,31 @@ import { nav, site } from '../data/site';
       <ul>
         <li>{site.city}</li>
         <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
-        <li><a href={`https://wa.me/${site.whatsapp.replace('+', '')}`}>WhatsApp</a></li>
+        <li><a href={wa}>WhatsApp</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-        <li><a href={site.instagram}>Instagram</a></li>
       </ul>
     </div>
   </div>
+  <div class="door" aria-hidden="true"><Image src={porte} alt="" widths={[300]} sizes="360px" /></div>
   <p class="copy">© {new Date().getFullYear()} Jnane nissa · Sur réservation uniquement</p>
 </footer>
+
 <style>
-  footer { background: var(--green); color: var(--cream); padding: 4.5rem 0 1.5rem; font-size: .95rem; font-weight: 300; }
-  h4 { font-family: var(--sans); font-weight: 500; font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--rose); margin: 0 0 1.2rem; }
+  footer { position: relative; overflow: hidden; background: var(--rose-deep); color: var(--cream); padding: 4rem 0 1.5rem; font-size: .95rem; font-weight: 300; }
+  .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); position: relative; z-index: 1; }
+  h4 { font-family: var(--sans); font-weight: 500; font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.2rem; }
   .brand { font-family: var(--serif); font-size: 2.4rem; line-height: 1; margin: 0 0 .3rem; font-weight: 500; }
-  .ar { text-align: left; font-family: 'Amiri', var(--serif); font-size: 1.5rem; margin: 0 0 1rem; color: var(--rose); }
-  p { max-width: 24em; opacity: .85; }
+  .ar { font-family: 'Amiri', var(--serif); font-size: 1.4rem; margin: 0 0 1rem; color: var(--gold); text-align: left; }
+  .tag, ul li { opacity: .92; }
+  .tag { max-width: 22em; }
+  .social { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.4rem; }
+  .social a { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
   ul { list-style: none; padding: 0; margin: 0; }
   li { margin-bottom: .6rem; }
-  a { text-decoration: none; opacity: .85; transition: .2s; }
-  a:hover { opacity: 1; color: var(--rose); }
-  .copy { text-align: center; max-width: none; margin: 3.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(250,247,241,.2); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .65; }
+  a { text-decoration: none; color: inherit; }
+  a:hover { color: var(--gold); text-decoration: underline; }
+  .door { position: absolute; right: 0; bottom: 0; width: 360px; opacity: .9; pointer-events: none; -webkit-mask-image: linear-gradient(to left, #000 55%, transparent); mask-image: linear-gradient(to left, #000 55%, transparent); }
+  .door img { width: 100%; height: auto; display: block; }
+  .copy { position: relative; z-index: 1; text-align: center; margin: 3.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(247,241,232,.25); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+  @media (max-width: 700px) { .door { width: 200px; opacity: .45; } }
 </style>
