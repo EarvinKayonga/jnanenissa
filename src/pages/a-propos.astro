@@ -2,13 +2,15 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-import roses from '../assets/photos/mock-roses.jpg';
-import tressage from '../assets/photos/mock-tressage.jpg';
-import kasbah from '../assets/photos/mock-kasbah.jpg';
-import poterie from '../assets/photos/mock-poterie.jpg';
-import expo from '../assets/photos/mock-expo.jpg';
-import atelier from '../assets/photos/mock-atelier.jpg';
-import boutique from '../assets/photos/mock-boutique.jpg';
+import queSignifie from '../assets/photos/que-signifie.jpg';
+import decouvrir1 from '../assets/photos/decouvrir-1.jpg';
+import decouvrir2 from '../assets/photos/decouvrir-2.jpg';
+import decouvrir3 from '../assets/photos/decouvrir-3.jpg';
+import explorerA from '../assets/photos/explorer-a.png';
+import explorerB from '../assets/photos/explorer-b.png';
+import explorerC from '../assets/photos/explorer-c.png';
+import fondatrice from '../assets/photos/fondatrice.jpg';
+import collines from '../assets/illustrations/collines.svg';
 import echappees from '../assets/presse/echappees.png';
 import arte from '../assets/presse/arte.png';
 import geo from '../assets/presse/geo.png';
@@ -34,8 +36,8 @@ const presseEcrite = [
 ];
 
 const tabs = [
-  { id: 'histoire', label: 'Notre histoire' },
-  { id: 'fondatrice', label: 'La fondatrice' },
+  { id: 'histoire', label: 'Notre ambition' },
+  { id: 'fondatrice', label: 'Notre histoire' },
   { id: 'presse', label: 'Ils parlent de nous' },
   { id: 'rejoindre', label: 'Rejoindre l’aventure' },
 ];
@@ -55,11 +57,11 @@ const ig = site.instagram;
   <div class="panel" id="panel-histoire" role="tabpanel">
     <div class="split">
       <div class="split-text">
-        <span class="eyebrow">Notre histoire</span>
+        <span class="eyebrow">Notre ambition</span>
         <h2>Que signifie Jnane nissa ?</h2>
         <p class="lead">En lettres latines, <strong>Jnane nissa</strong> signifie en arabe « le champ des femmes ». Le mot évoque à la fois la terre sur laquelle les femmes travaillent et un espace où leurs voix, leurs récits et leurs expériences peuvent s'exprimer.</p>
       </div>
-      <Image src={roses} alt="Une femme cueille des roses dans un champ" widths={[528]} sizes="(min-width: 800px) 50vw, 100vw" class="split-img" />
+      <Image src={queSignifie} alt="Une femme cueille des roses dans un champ" widths={[900, 1800]} sizes="(min-width: 800px) 50vw, 100vw" class="split-img" />
     </div>
 
     <div class="wrap block grid cols-2 vision">
@@ -91,27 +93,27 @@ const ig = site.instagram;
         <p>Chacun est invité à explorer les patrimoines marocains, à écouter les histoires de celles qui les font vivre, à s'interroger sur la place des femmes et à découvrir ou redécouvrir les produits et les savoir-faire qui façonnent les territoires.</p>
         <p>Pour suivre notre aventure, <a href={ig} target="_blank" rel="noopener">retrouvez-nous sur Instagram</a>.</p>
       </div>
-      <Image src={tressage} alt="Mains qui tressent une natte" widths={[236]} sizes="25vw" class="strip-img" />
-      <Image src={kasbah} alt="Kasbah et palmeraie" widths={[208]} sizes="25vw" class="strip-img" />
-      <Image src={poterie} alt="Mains qui façonnent une poterie" widths={[226]} sizes="25vw" class="strip-img" />
+      <Image src={decouvrir1} alt="Mains qui tiennent des fruits secs au-dessus d’un panier" widths={[500, 1000]} sizes="25vw" class="strip-img" />
+      <Image src={decouvrir2} alt="Une femme en vert marche dans un champ d’arganiers" widths={[500, 1000]} sizes="25vw" class="strip-img" />
+      <Image src={decouvrir3} alt="Mains qui façonnent une poterie" widths={[500, 1000]} sizes="25vw" class="strip-img" />
     </div>
 
     <div class="wrap block">
       <h2>Explorer et s'immerger</h2>
-      <p class="intro">Une exposition interactive, des ateliers et une boutique pour prolonger la visite.</p>
+      <p class="intro">Une exposition interactive, des ateliers découverte et une boutique pour prolonger la visite.</p>
       <div class="grid cols-3 explore">
         <a class="explore-card" href="/exposition">
-          <Image src={expo} alt="Salle d'exposition" widths={[170]} sizes="33vw" />
+          <Image src={explorerA} alt="Illustration d’une visiteuse dans l’exposition" widths={[481]} sizes="33vw" />
           <span class="tag-label">Expositions</span>
           <p>Des objets, des gestes, des territoires.</p>
         </a>
         <a class="explore-card" href="/ateliers">
-          <Image src={atelier} alt="Deux femmes en atelier" widths={[165]} sizes="33vw" />
+          <Image src={explorerB} alt="Illustration d’une femme qui prépare une recette" widths={[481]} sizes="33vw" />
           <span class="tag-label">Ateliers</span>
           <p>Apprendre, partager et transmettre ensemble.</p>
         </a>
         <a class="explore-card" href="/boutique">
-          <Image src={boutique} alt="Produits du terroir en boutique" widths={[168]} sizes="33vw" />
+          <Image src={explorerC} alt="Illustration d’une femme qui choisit un produit en boutique" widths={[481]} sizes="33vw" />
           <span class="tag-label">Boutique</span>
           <p>Rapporter un peu du champ des femmes.</p>
         </a>
@@ -132,15 +134,34 @@ const ig = site.instagram;
         <p>Nacima Mohamdi est spécialisée dans l'étude des dynamiques de genre liées à la valorisation touristique et patrimoniale des patrimoines agricoles et des territoires.</p>
         <p>Ses recherches l'ont conduite à s'intéresser particulièrement à la place des femmes dans la production, la transformation et la valorisation des produits de terroir, ainsi qu'à leur rôle dans la préservation et la transmission des savoir-faire.</p>
         <p>C'est de ce parcours, nourri par ses recherches, son attachement aux patrimoines marocains et surtout ses rencontres avec de nombreuses femmes et le recueil de leurs récits, qu'est née l'envie de créer Jnane nissa. Désormais concrétisé, ce projet est devenu un lieu culturel qui rassemble toutes celles et ceux qui souhaitent découvrir les patrimoines à travers les regards, les histoires et les récits des femmes qui les font vivre au quotidien.</p>
+        <div class="founder-actions">
+          <a class="btn" href="https://theses.hal.science/tel-05029020/" target="_blank" rel="noopener">Thèse de doctorat</a>
+          <a class="btn" href="https://journals.openedition.org/tourisme/5937" target="_blank" rel="noopener">Article scientifique</a>
+        </div>
       </div>
-      <p class="video-note">Une vidéo de Nacima Mohamdi, également publiée sur Instagram, arrive bientôt.</p>
+      <div class="founder-photo">
+        <Image src={fondatrice} alt="Nacima Mohamdi parmi les roses" widths={[500, 1000]} sizes="(min-width: 800px) 50vw, 100vw" />
+        <p class="video-note">Une vidéo de Nacima Mohamdi, également publiée sur Instagram, arrive bientôt.</p>
+      </div>
     </div>
   </div>
 
   <div class="panel alt" id="panel-presse" role="tabpanel" hidden>
     <div class="wrap">
-      <span class="eyebrow">Presse écrite</span>
-      <h2>Ils parlent de nous</h2>
+      <span class="eyebrow">Ils parlent de nous</span>
+      <h2>Télévision et documentaires</h2>
+      <div class="grid cols-2 tv">
+        <a class="tv-card" href="https://youtu.be/ZzmV3wjt0ZU" target="_blank" rel="noopener">
+          <Image src={echappees} alt="Échappées belles" class="tv-logo" width={686} height={199} />
+          <p>Replay disponible sur YouTube ↗</p>
+        </a>
+        <div class="tv-card soon">
+          <Image src={arte} alt="Arte" class="tv-logo" width={1000} height={182} />
+          <p>Film en cours de production</p>
+        </div>
+      </div>
+
+      <h2 class="sub-title">Presse écrite</h2>
       <div class="press-grid">
         {presseEcrite.map((p) => {
           const Tag = p.href ? 'a' : 'div';
@@ -162,23 +183,12 @@ const ig = site.instagram;
           );
         })}
       </div>
-
-      <span class="eyebrow tv-eyebrow">Télévision et documentaires</span>
-      <div class="grid cols-2 tv">
-        <a class="tv-card" href="https://youtu.be/ZzmV3wjt0ZU" target="_blank" rel="noopener">
-          <Image src={echappees} alt="Échappées belles" class="tv-logo" width={686} height={199} />
-          <p>Replay disponible sur YouTube ↗</p>
-        </a>
-        <div class="tv-card soon">
-          <Image src={arte} alt="Arte" class="tv-logo" width={1000} height={182} />
-          <p>Film en cours de production</p>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="panel" id="panel-rejoindre" role="tabpanel" hidden>
-    <div class="wrap">
+    <Image src={collines} alt="" class="hills" width={1440} height={240} aria-hidden="true" />
+    <div class="wrap join-wrap">
       <span class="eyebrow">Rejoindre l'aventure</span>
       <h2>Jnane nissa est avant tout une aventure collective</h2>
       <p class="lead">Elle se construit avec les femmes et les hommes qui font vivre les patrimoines, mais aussi avec celles et ceux qui souhaitent les découvrir, les transmettre et les faire connaître.</p>
@@ -267,12 +277,12 @@ const ig = site.instagram;
   .panel { padding: 0 0 4.5rem; }
   .panel[hidden] { display: none; }
 
-  .split { display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; }
-  .split-text { background: var(--rose); padding: 4.5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
-  .split-text h2 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); color: #4a1f17; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split-text { background: var(--rose); padding: 3rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .split-text h2 { font-size: clamp(2rem, 3.6vw, 2.9rem); color: #4a1f17; }
   .split-text .eyebrow { color: #7a2f1c; }
   .split-text .lead { color: #3d1a12; font-size: 1.15rem; }
-  .split-img { width: 100%; height: 100%; object-fit: cover; min-height: 420px; }
+  .split-img { width: 100%; height: 340px; object-fit: cover; }
 
   .block { padding-top: 4.5rem; }
   .vision { align-items: start; }
@@ -296,7 +306,7 @@ const ig = site.instagram;
   .explore { margin-top: 2rem; }
   .explore-card { display: block; background: #fffaf2; border: 1px solid rgba(194,100,58,.2); text-decoration: none; color: inherit; transition: .2s; }
   .explore-card:hover { border-color: var(--terra); }
-  .explore-card img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+  .explore-card img { width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; }
   .tag-label { display: block; padding: 1rem 1.2rem 0; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
   .explore-card p { padding: .4rem 1.2rem 1.3rem; margin: 0; font-size: .95rem; }
 
@@ -310,10 +320,19 @@ const ig = site.instagram;
   .rameau { position: absolute; left: -10px; top: 40px; width: 110px; height: auto; opacity: .55; z-index: 0; pointer-events: none; }
   .ornement { display: block; margin: .8rem auto; width: 200px; height: auto; }
   .role { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--terra); }
-  .video-note { align-self: end; margin: 0; font-size: .82rem; font-style: italic; opacity: .55; }
+  .video-note { margin: 1rem 0 0; font-size: .85rem; font-style: italic; opacity: .6; }
+  .founder-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+  .founder-actions .btn { margin: 0; background: var(--green); border-color: var(--green); color: var(--cream); border-radius: 999px; padding: .85rem 1.8rem; font-size: .75rem; }
+  .founder-actions .btn:hover { background: #4e5229; border-color: #4e5229; }
+  .founder-photo { display: flex; flex-direction: column; }
+  .founder-photo img { width: 100%; height: auto; min-height: 520px; object-fit: cover; border-radius: 260px 260px 10px 10px; }
+  .sub-title { margin-top: 4.5rem; }
 
   .panel.alt { background: var(--sand); }
-  #panel-presse, #panel-rejoindre { padding-top: 4.5rem; }
+  #panel-presse { padding-top: 4.5rem; }
+  #panel-rejoindre { padding-top: 0; }
+  .hills { display: block; width: 100%; height: auto; margin-top: -1px; }
+  .join-wrap { padding-top: 3.5rem; }
   .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 1.4rem; margin-top: 2rem; }
   .press-card { display: block; text-decoration: none; color: inherit; }
   .press-logo { aspect-ratio: 4/3; background: #fffaf2; border: 1px solid rgba(194,100,58,.15); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; text-align: center; padding: 1.2rem; margin-bottom: 1rem; transition: .2s; }
@@ -325,8 +344,7 @@ const ig = site.instagram;
   .date { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin: 0; }
   .read { color: var(--terra); }
 
-  .tv-eyebrow { display: block; margin-top: 4rem; }
-  .tv { align-items: stretch; margin-top: 1.5rem; }
+    .tv { align-items: stretch; margin-top: 1.5rem; }
   .tv-card { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 2.2rem; background: #fffaf2; border: 1px solid rgba(194,100,58,.15); text-decoration: none; color: inherit; transition: .2s; }
   a.tv-card:hover { border-color: var(--terra); }
   .tv-logo { height: 64px; width: auto; object-fit: contain; object-position: left; }
@@ -348,8 +366,9 @@ const ig = site.instagram;
 
   @media (max-width: 800px) {
     .split { grid-template-columns: 1fr; }
-    .split-text { padding: 3rem 1.4rem; }
-    .split-img { min-height: 300px; }
+    .split-text { padding: 2.4rem 1.4rem; }
+    .split-img { height: 260px; }
+    .founder-photo img { min-height: 360px; }
     .arches { grid-template-columns: 1fr; gap: 1.2rem; justify-items: center; }
     .arch { width: min(100%, 250px); padding-left: .8rem; padding-right: .8rem; }
     .founder-card { border-radius: 150px 150px 10px 10px; padding: 4rem 1.4rem 2rem; }

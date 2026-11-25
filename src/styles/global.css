@@ -3,6 +3,7 @@
   --sand: #f1e4d3;
   --rose: #efb0a2;
   --rose-deep: #c2643a;
+  --footer: #bc7b5d;
   --green: #676b39;
   --terra: #c2643a;
   --gold: #f5c475;
@@ -14,7 +15,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; overflow-x: hidden; -webkit-text-size-adjust: 100%; background: var(--cream); color: var(--ink); font: 17px/1.65 var(--sans); }
+body { margin: 0; overflow-x: hidden; -webkit-text-size-adjust: 100%; background: var(--cream); color: var(--ink); font: 19px/1.65 var(--sans); }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0 0 .5em; color: var(--green); }
@@ -51,7 +52,7 @@ p { margin: 0 0 1em; }
 .prose li { margin-bottom: .4em; }
 
 @media (max-width: 700px) {
-  body { font-size: 16px; }
+  body { font-size: 17px; }
   .wrap { padding: 0 1.1rem; }
   .section { padding: 3rem 0; }
   .page-head { padding: 3.5rem 0 2.5rem; }

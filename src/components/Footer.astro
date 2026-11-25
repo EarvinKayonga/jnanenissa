@@ -5,51 +5,85 @@ import porte from '../assets/photos/mock-porte.jpg';
 const wa = `https://wa.me/${site.whatsapp.replace('+', '')}`;
 ---
 <footer>
-  <div class="wrap grid cols">
-    <div>
+  <div class="wrap cols">
+    <div class="brand-block">
+      <svg class="mark" viewBox="0 0 80 80" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.3">
+          <circle cx="40" cy="40" r="10" />
+          <circle cx="40" cy="40" r="34" />
+          <path d="M40 6 C47 18 47 30 40 36 C33 30 33 18 40 6Z" />
+          <path d="M40 74 C33 62 33 50 40 44 C47 50 47 62 40 74Z" />
+          <path d="M6 40 C18 33 30 33 36 40 C30 47 18 47 6 40Z" />
+          <path d="M74 40 C62 33 50 33 44 40 C50 47 62 47 74 40Z" />
+          <path d="M16 16 C26 20 32 28 36 36 C28 32 20 26 16 16Z" />
+          <path d="M64 64 C54 60 48 52 44 44 C52 48 60 54 64 64Z" />
+          <path d="M64 16 C60 26 52 32 44 36 C48 28 54 20 64 16Z" />
+          <path d="M16 64 C20 54 28 48 36 44 C32 52 26 60 16 64Z" />
+        </g>
+      </svg>
       <p class="brand">{site.name}</p>
-      <p class="ar" dir="rtl">{site.arabic}</p>
-      <p class="tag">{site.tagline}.</p>
-      <p class="social">
-        <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>
-        <a href={wa} target="_blank" rel="noopener">WhatsApp</a>
-        <a href={`mailto:${site.email}`}>Email</a>
-      </p>
+      <p class="sub">Le champ des femmes</p>
     </div>
+
+    <div class="intro">
+      <p class="tag">Un lieu dédié aux femmes qui cultivent la terre, transmettent les savoir-faire et font vivre les patrimoines marocains.</p>
+      <div class="social">
+        <a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r=".6" /></svg>
+        </a>
+        <a href={wa} target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8.3 18.7z" /><path d="M9 10c0 2.8 2.2 5 5 5l1-1.2-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z" /></svg>
+        </a>
+        <a href={`mailto:${site.email}`} aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5l8.5 6 8.5-6" /></svg>
+        </a>
+      </div>
+    </div>
+
     <div>
-      <h4>Explorer</h4>
+      <h4>Liens rapides</h4>
       <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
     </div>
+
     <div>
-      <h4>Nous joindre</h4>
+      <h4>Infos pratiques</h4>
       <ul>
         <li>{site.city}</li>
+        <li>Sur réservation uniquement</li>
         <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
-        <li><a href={wa}>WhatsApp</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
       </ul>
     </div>
   </div>
+
   <div class="door" aria-hidden="true"><Image src={porte} alt="" widths={[300]} sizes="360px" /></div>
   <p class="copy">© {new Date().getFullYear()} Jnane nissa · Sur réservation uniquement</p>
 </footer>
 
 <style>
-  footer { position: relative; overflow: hidden; background: var(--rose-deep); color: var(--cream); padding: 4rem 0 1.5rem; font-size: .95rem; font-weight: 300; }
-  .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); position: relative; z-index: 1; }
-  h4 { font-family: var(--sans); font-weight: 500; font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.2rem; }
-  .brand { font-family: var(--serif); font-size: 2.4rem; line-height: 1; margin: 0 0 .3rem; font-weight: 500; }
-  .ar { font-family: 'Amiri', var(--serif); font-size: 1.4rem; margin: 0 0 1rem; color: var(--gold); text-align: left; }
-  .tag, ul li { opacity: .92; }
-  .tag { max-width: 22em; }
-  .social { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.4rem; }
-  .social a { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+  footer { position: relative; overflow: hidden; background: var(--footer); color: var(--cream); padding: 4rem 0 1.5rem; font-size: 1rem; font-weight: 300; }
+  .cols { display: grid; grid-template-columns: 1.3fr 1.2fr .8fr 1fr; gap: 2.5rem; position: relative; z-index: 1; padding-right: 14vw; align-items: start; }
+  .mark { width: 64px; height: 64px; color: var(--cream); opacity: .9; margin-bottom: .6rem; }
+  .brand { font-family: var(--serif); font-size: 2.6rem; white-space: nowrap; line-height: 1; margin: 0; font-weight: 500; }
+  .sub { margin: .4rem 0 0; font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; opacity: .9; }
+  .tag { max-width: 24em; margin: 0 0 1.4rem; line-height: 1.6; }
+  .social { display: flex; gap: 1.2rem; }
+  .social a { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(247,241,232,.55); border-radius: 50%; color: var(--cream); }
+  .social a:hover { border-color: var(--gold); color: var(--gold); }
+  .social svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  h4 { font-family: var(--sans); font-weight: 500; font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; color: var(--cream); margin: 0 0 1.3rem; }
   ul { list-style: none; padding: 0; margin: 0; }
-  li { margin-bottom: .6rem; }
+  li { margin-bottom: .7rem; }
   a { text-decoration: none; color: inherit; }
   a:hover { color: var(--gold); text-decoration: underline; }
-  .door { position: absolute; right: 0; bottom: 0; width: 360px; opacity: .9; pointer-events: none; -webkit-mask-image: linear-gradient(to left, #000 55%, transparent); mask-image: linear-gradient(to left, #000 55%, transparent); }
-  .door img { width: 100%; height: auto; display: block; }
+  .door { position: absolute; right: 0; top: 0; bottom: 0; width: 34vw; min-width: 300px; pointer-events: none; -webkit-mask-image: linear-gradient(to left, #000 60%, transparent); mask-image: linear-gradient(to left, #000 60%, transparent); }
+  .door img { width: 100%; height: 100%; object-fit: cover; object-position: 20% center; }
   .copy { position: relative; z-index: 1; text-align: center; margin: 3.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(247,241,232,.25); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
-  @media (max-width: 700px) { .door { width: 200px; opacity: .45; } }
+  @media (max-width: 900px) {
+    .cols { grid-template-columns: 1fr 1fr; padding-right: 0; }
+    .door { opacity: .35; width: 100%; }
+  }
+  @media (max-width: 560px) {
+    .cols { grid-template-columns: 1fr; }
+  }
 </style>
