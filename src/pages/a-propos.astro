@@ -10,7 +10,7 @@ import explorerA from '../assets/photos/explorer-a.png';
 import explorerB from '../assets/photos/explorer-b.png';
 import explorerC from '../assets/photos/explorer-c.png';
 import fondatrice from '../assets/photos/fondatrice.jpg';
-import collines from '../assets/illustrations/collines.svg';
+import paysage from '../assets/photos/paysage-collines.jpg';
 import echappees from '../assets/presse/echappees.png';
 import arte from '../assets/presse/arte.png';
 import geo from '../assets/presse/geo.png';
@@ -187,7 +187,7 @@ const ig = site.instagram;
   </div>
 
   <div class="panel" id="panel-rejoindre" role="tabpanel" hidden>
-    <Image src={collines} alt="" class="hills" width={1440} height={240} aria-hidden="true" />
+    <Image src={paysage} alt="Collines verdoyantes avec un lac" class="landscape" widths={[882]} sizes="100vw" />
     <div class="wrap join-wrap">
       <span class="eyebrow">Rejoindre l'aventure</span>
       <h2>Jnane nissa est avant tout une aventure collective</h2>
@@ -331,7 +331,7 @@ const ig = site.instagram;
   .panel.alt { background: var(--sand); }
   #panel-presse { padding-top: 4.5rem; }
   #panel-rejoindre { padding-top: 0; }
-  .hills { display: block; width: 100%; height: auto; margin-top: -1px; }
+  .landscape { display: block; width: 100%; height: auto; }
   .join-wrap { padding-top: 3.5rem; }
   .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 1.4rem; margin-top: 2rem; }
   .press-card { display: block; text-decoration: none; color: inherit; }
